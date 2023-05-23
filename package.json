@@ -1,0 +1,28 @@
+{
+  "name": "embedding-search-node",
+  "version": "0.0.1",
+  "description": "A vector search utility written purely in javascript with no dependencies. Allows for the searching/ranking of a list of javascript objects with 'embedding' field defined.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewbloese-00/embedding-search-node.git"
+  },
+  "keywords": [
+    "nodejs",
+    "embedding",
+    "search",
+    "cosine",
+    "similarity",
+    "vector",
+    "search"
+  ],
+  "author": "Andrew Bloese",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrewbloese-00/embedding-search-node/issues"
+  },
+  "homepage": "https://github.com/andrewbloese-00/embedding-search-node#readme"
+}
