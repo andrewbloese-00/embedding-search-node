@@ -58,7 +58,7 @@ function avg(nums){
     for(let size of sizes ){
         //run x tests each
         for(let i = 0; i < x; i++){
-            console.log(`Running test ${i+1} on space [${size}]`)
+            console.log(`\rRunning test ${i+1} on space [${size}]`)
             i ==0 
               ? records[`${size}`] = [runSingleTest(size,true)]
               : records[`${size}`].push(runSingleTest(size))
@@ -71,4 +71,4 @@ function avg(nums){
         let averageTime = avg(records[size])
         console.log(`${size} -> ${averageTime.toFixed(3)}ms`)
     }
-})(10)
+})(50)

@@ -1,6 +1,7 @@
 
+const REG_SEARCH_LIMIT = 20000
+const { cosineSimilarity , smartVector} = require("./lib/customMath")
 
-const { cosineSimilarity } = require("./lib/customMath")
 const MaxHeap = require("./lib/maxheap")
 
 
@@ -10,13 +11,14 @@ const MaxHeap = require("./lib/maxheap")
  * @param {number[]} queryVector - the embedding of the query to search list  
  * @param {number} threshold - the minimum required similarity between two vectors to be considered 
  * @param {number} n - the max number of responses to include in the response
- * @returns 
+ * @param {boolean} trackAnomalies - whether to track anomalies
+ * @returns {{top:[score:number,index:number][], anomalies?: [score:number,index:number][]}}
 */
-function GetRankedEmbeddingSearch(itemsWithEmbeddings,queryVector, threshold=0.6, n=10){
+function GetRankedEmbeddingSearch(itemsWithEmbeddings,queryVector, threshold=0.6, n=10, trackAnomalies=false){
     let vex = itemsWithEmbeddings.map((item)=>item.embedding)
     let results;
-
-    if(vex.length < 20000){ //use basic array sort for smaller spaces
+    let anomalies = []
+    if(vex.length < REG_SEARCH_LIMIT){ //use basic array sort for smaller spaces
         results =[]
     }  else {
         results = new MaxHeap()
@@ -26,17 +28,19 @@ function GetRankedEmbeddingSearch(itemsWithEmbeddings,queryVector, threshold=0.6
     for(let i = 0; i < vex.length; i++){
         let s = cosineSimilarity(queryVector, vex[i]);
         if(s >= threshold){
-            if(vex.length < 20000){
+            if(vex.length < REG_SEARCH_LIMIT){
                 results.push([s,i])
             } else { 
                 results.insert([s,i])
             }
-        };
+        } else { 
+            if( trackAnomalies) anomalies.push([s,i])
+        }
     }
 
     //sort // extract the best scores
     let ranked = []
-    if(vex.length < 20000){ //small spaces use built in sort
+    if(vex.length < REG_SEARCH_LIMIT){ //small spaces use built in sort
         ranked = results.sort(([scoreA,vIA],[scoreB,vIB])=>scoreB-scoreA).slice(0,n)
     } else { 
         for(let i =0; i < n; i++)
@@ -44,10 +48,15 @@ function GetRankedEmbeddingSearch(itemsWithEmbeddings,queryVector, threshold=0.6
     }
 
     //return an array of size ay most "n" with no null values
-    return ranked.filter(i=>!!i)
+    let top =  ranked.filter(i=>!!i)
+    let payload = { top }
+    if(trackAnomalies){
+        payload["anomalies"] = anomalies
+    }
+    return payload
 }
 
 
-module.exports = { GetRankedEmbeddingSearch } 
+module.exports = { GetRankedEmbeddingSearch, smartVector } 
 
 
