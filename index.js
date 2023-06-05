@@ -6,6 +6,13 @@ const REG_SEARCH_LIMIT = 20000;
 const { cosineSimilarity , smartVector} = require("./lib/customMath")
 const MaxHeap = require("./lib/maxheap")
 
+
+function extractEmbeddingsFromItems(itemsWithEmbeddings){
+    return itemsWithEmbeddings.map(item=>item.embedding)
+}
+
+
+
 /**
  * 
  * @param {{[key:string]: any, embedding:number[]}[]} itemsWithEmbeddings - any array of objects containing an 'embedding' attribute. The embedding must be an array of numbers (represents a vector)
@@ -13,30 +20,25 @@ const MaxHeap = require("./lib/maxheap")
  * @param {number} threshold - the minimum required similarity between two vectors to be considered 
  * @param {number} n - the max number of responses to include in the response
  * @param {boolean} trackAnomalies - whether to track anomalies
- * @returns {{top:[score:number,index:number][], anomalies?: [score:number,index:number][]}}
+ * @returns {{ranked: {[key:string]: any, score:number}}}
 */
-function GetRankedEmbeddingSearch(itemsWithEmbeddings,queryVector, threshold=0.6, n=10, trackAnomalies=false){
-    let vex = itemsWithEmbeddings.map((item)=>item.embedding)
-    let results;
-    let anomalies = []
-    if(vex.length < REG_SEARCH_LIMIT){ //use basic array sort for smaller spaces
-        results =[]
-    }  else {
-        results = new MaxHeap()
-    }
+function GetRankedEmbeddingSearch(itemsWithEmbeddings,queryVector, threshold=0.6, n=10){
+    let vector_space = extractEmbeddingsFromItems(itemsWithEmbeddings)
+    let results = ( vector_space.length < REG_SEARCH_LIMIT )
+        ? []
+        : new MaxHeap()
+
 
     //score the embeddings
-    for(let i = 0; i < vex.length; i++){
-        let s = cosineSimilarity(queryVector, vex[i]);
+    for(let i = 0; i < vector_space.length; i++){
+        let s = cosineSimilarity(queryVector, vector_space[i]);
         if(s >= threshold){
-            if(vex.length < REG_SEARCH_LIMIT){
+            if(vector_space.length < REG_SEARCH_LIMIT){
                 results.push([s,i])
             } else { 
                 results.insert([s,i])
             }
-        } else { 
-            if( trackAnomalies) anomalies.push([s,i])
-        }
+        } 
     }
 
     //sort // extract the best scores
@@ -49,12 +51,16 @@ function GetRankedEmbeddingSearch(itemsWithEmbeddings,queryVector, threshold=0.6
     }
 
     //return an array of size ay most "n" with no null values
-    let top =  ranked.filter(i=>!!i)
-    let payload = { top }
-    if(trackAnomalies){
-        payload["anomalies"] = anomalies
-    }
-    return payload
+    let top =  ranked.filter(i=>!!i).map(([score,idx])=>{
+        //map the ranked items back to their items, not including their embeddings 
+        //but rather their cosine similarity in the  "score" field
+        let res = JSON.parse(JSON.stringify(itemsWithEmbeddings[idx]))
+        res["score"] = score
+        delete res["embedding"]
+        return res
+        
+    })
+    return {ranked: top}
 }
 
 

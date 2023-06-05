@@ -1,3 +1,5 @@
+
+
 # About
 This repository contains the code and data for a JavaScript vector search algorithm, along with an analysis of its running times for different search space sizes. Allows for the searching/ranking of a list of javascript objects with "embedding" fields. 
 
@@ -5,10 +7,26 @@ This repository contains the code and data for a JavaScript vector search algori
 |-----------------|---------------------|--------------|
 
 
-
 # Usage 
 Either clone this repository to your project or use 
 `npm i embedding-search-node`
+
+
+
+
+## Change History
+> v0.0.4 - Removed the "anomaly" feature on vector search as it seemed out of scope for the ranking function.
+
+> v0.0.4 - Refactored the return value of the search results array, to include context from the original array instead of the old [score,index] format
+
+> v0.0.3 - Changed implementation to use a maxheap for search spaces of sizes > 20,000 , opting for simple array and builtin sort for smaller spaces. 
+
+> v0.0.3 - Implemented a "smartVector" data structure that stores a vector along with its magnitude. This dramatically improved the performance of the cosineSimilarity function by preventing recalculation of magnitude for the query vector. The trade off is a slightly longer time to create a new vector, but seems worthwhile for the search improvements
+
+> v0.0.2 - Switched to using a maxheap for larger inputs. Introduced a threshold parameter to avoid sorting clearly irrelevant embeddings. Lots of time spent in computation of magnitude. 
+
+> v0.0.1 - A basic implementation of calculating the best ranking using embedding vectors to search a vector space. Utilized mergesort, no filtering out with threshold
+
 
 
 ---
