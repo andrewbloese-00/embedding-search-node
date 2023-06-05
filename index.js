@@ -1,9 +1,10 @@
 
-const REG_SEARCH_LIMIT = 20000
+const REG_SEARCH_LIMIT = 20000;
+
+
+//vector math functions 
 const { cosineSimilarity , smartVector} = require("./lib/customMath")
-
 const MaxHeap = require("./lib/maxheap")
-
 
 /**
  * 

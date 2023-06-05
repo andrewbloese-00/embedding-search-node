@@ -64,10 +64,11 @@ The provided data includes average running times (in milliseconds) for the algor
 
 
 
-#### Running Time V 0.0.3 
+### Running Time v0.0.2
+>![Version 0.0.2](https://github.com/andrewbloese-00/embedding-search-node/blob/main/test/tables/optimized_v1.png?raw=true) Running Time(ms) over search space size (n). Improvements include implementation of max heap for ranking. Removed mergesort step. 
 
->![Version 0.0.3](https://github.com/andrewbloese-00/embedding-search-node/blob/main/test/tables/experiment_graph_v2.png?raw=true)
-> Running Time(ms) over search space size (n)
+### Running Time v0.0.3
+>![Version 0.0.3](https://github.com/andrewbloese-00/embedding-search-node/blob/main/test/tables/experiment_graph_v2.png?raw=true) Running Time(ms) over search space size (n). Improvements include implementation of "smartVector" format to reduce calls to expensive "magnitude" function. For small n (n ≤ 20000), use builtin sort to prevent heap overhead. 
 
 ### Insights
 
