@@ -63,9 +63,11 @@ The provided data includes average running times (in milliseconds) for the algor
 
 
 
-#### Graph
-Graph of the test results
-![Version 0.0.3](https://github.com/andrewbloese-00/embedding-search-node/blob/main/test/tables/experiment_graph_v2.png?raw=true)
+
+#### Running Time V 0.0.3 
+
+>![Version 0.0.3](https://github.com/andrewbloese-00/embedding-search-node/blob/main/test/tables/experiment_graph_v2.png?raw=true)
+> Running Time(ms) over search space size (n)
 
 ### Insights
 
@@ -76,11 +78,3 @@ Graph of the test results
 
 ## How is this useful? 
 The advent of embedding-based vector search has ushered in a new era of search capabilities, offering unprecedented advantages in various domains. By harnessing the power of high-dimensional vector spaces and semantic similarities, this approach enables accurate and context-aware searches, paving the way for enhanced user experiences, personalized recommendations, and advanced data analytics. With embedding-based vector search, businesses and researchers can delve deeper into the intricacies of their data, uncovering hidden patterns and associations that were previously inaccessible. As this technology continues to evolve and mature, we can expect even more groundbreaking applications and transformative advancements in search methodologies, propelling us into a future where information retrieval is faster, more accurate, and more intuitive than ever before.
-
-### Potential Use Cases
-* Recommendation Systems: Embedding-based vector search enables personalized recommendations by capturing user preferences and item similarities. It powers recommendation engines in e-commerce platforms, music and video streaming services, content platforms, and social media platforms, delivering tailored recommendations to users based on their preferences and behavior.
-* Image and Video Retrieval: By representing images and videos as vectors, embedding-based search allows for similarity-based retrieval. It finds applications in reverse image search, content-based image retrieval, visual recommendation systems, video summarization, and object recognition, enabling more accurate and efficient searches in multimedia databases.
-* Anomaly Detection: Embedding-based vector search can identify anomalies by comparing data points against normal patterns. This is applied in fraud detection, network intrusion detection, predictive maintenance, and cybersecurity, where abnormal behavior can be identified by measuring the distance or similarity of vectors.
-* Content Search and Discovery: Embedding-based search can enhance content discovery platforms, enabling users to find relevant articles, documents, research papers, or products by leveraging semantic similarities. It improves search engines, digital libraries, content management systems, and knowledge bases, making information retrieval more precise and context-aware.
-* Personalization and User Profiling: By embedding user profiles and preferences into a vector space, embedding-based search can create personalized experiences. It enables personalized search results, targeted advertising, user segmentation, and user similarity-based recommendations, tailoring digital experiences to individual preferences.
-* Genomics and Bioinformatics: Embedding-based vector search is utilized in genomics research to analyze DNA sequences, identify genetic variations, and classify genes based on their similarities. It aids in drug discovery, precision medicine, and understanding genetic relationships, offering insights into complex biological data.
