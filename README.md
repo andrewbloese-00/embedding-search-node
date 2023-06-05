@@ -13,17 +13,22 @@ Either clone this repository to your project or use
 
 
 
-
+----
 ## Change History
 > v0.0.4 - Removed the "anomaly" feature on vector search as it seemed out of scope for the ranking function.
 
 > v0.0.4 - Refactored the return value of the search results array, to include context from the original array instead of the old [score,index] format
 
+> v0.0.3 - Max size of vector space increased to 160,300 vectors of length 1536. (Roughly 7% increase)
+
 > v0.0.3 - Changed implementation to use a maxheap for search spaces of sizes > 20,000 , opting for simple array and builtin sort for smaller spaces. 
+
 
 > v0.0.3 - Implemented a "smartVector" data structure that stores a vector along with its magnitude. This dramatically improved the performance of the cosineSimilarity function by preventing recalculation of magnitude for the query vector. The trade off is a slightly longer time to create a new vector, but seems worthwhile for the search improvements
 
 > v0.0.2 - Switched to using a maxheap for larger inputs. Introduced a threshold parameter to avoid sorting clearly irrelevant embeddings. Lots of time spent in computation of magnitude. 
+
+> v0.0.1 - A max capacity of 150,000 vectors of length 1536 established.
 
 > v0.0.1 - A basic implementation of calculating the best ranking using embedding vectors to search a vector space. Utilized mergesort, no filtering out with threshold
 
@@ -88,6 +93,8 @@ The provided data includes average running times (in milliseconds) for the algor
 ### Running Time v0.0.3
 >![Version 0.0.3](https://github.com/andrewbloese-00/embedding-search-node/blob/main/test/tables/experiment_graph_v2.png?raw=true) Running Time(ms) over search space size (n). Improvements include implementation of "smartVector" format to reduce calls to expensive "magnitude" function. For small n (n ≤ 20000), use builtin sort to prevent heap overhead. 
 
+* Note that in the nearly 2x Speedup in v0.0.3. The old version took almost 800ms compared to the new version taking an average of around 350ms for the same (n=150,000) test size.
+* Further optimizations may result in support for even larger search space sizes. 
 ### Insights
 
 * Variability: Some data points deviate from the overall increasing trend, indicating that factors other than search space alone can influence the algorithm's performance. This can likely be attributed to the fact that the sorting step is determined by the number of "over threshold" similarity elements included in the search space.
