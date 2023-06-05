@@ -65,6 +65,7 @@ The provided data includes average running times (in milliseconds) for the algor
 
 #### Graph
 Graph of the test results
+![Version 0.0.3](https://github.com/andrewbloese-00/embedding-search-node/blob/main/test/tables/experiment_graph_v2.png?raw=true)
 
 ### Insights
 
