@@ -156,7 +156,7 @@ The provided data includes average running times (in milliseconds) for the algor
 ### Running Time v0.0.3 - v0.0.5
 >![Version 0.0.3](https://github.com/andrewbloese-00/embedding-search-node/blob/main/test/tables/experiment_graph_v2.png?raw=true) Running Time(ms) over search space size (n). Improvements include implementation of "smartVector" format to reduce calls to expensive "magnitude" function. For small n (n ≤ 20000), use builtin sort to prevent heap overhead. 
 
-* Note that in the nearly 2x Speedup in v0.0.3. The old version took almost 800ms compared to the new version taking an average of around 350ms for the same (n=150,000) test size.
+* v0.0.1 and v0.0.2 took almost 800ms compared to the new version (v0.0.3+) taking an average of around 350ms for the same (n=150,000) test size.
 * Further optimizations may result in support for even larger search space sizes. 
 ### Insights
 
