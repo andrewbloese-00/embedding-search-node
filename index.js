@@ -1,9 +1,14 @@
 
-const REG_SEARCH_LIMIT = 20000;
+const REG_SEARCH_LIMIT = 25000;
 
 
 //vector math functions 
 const { cosineSimilarity , smartVector} = require("./lib/customMath")
+
+
+//expose the embedding interface using openai api keys
+const { EmbeddingInterface } = require("./lib/embeddings")
+
 const MaxHeap = require("./lib/maxheap")
 
 
@@ -11,7 +16,10 @@ function extractEmbeddingsFromItems(itemsWithEmbeddings){
     return itemsWithEmbeddings.map(item=>item.embedding)
 }
 
-
+//a pretty bad way to deep copy something 
+function susDeepCopy(item){
+    return JSON.parse(JSON.stringify(item))
+}
 
 /**
  * 
@@ -43,7 +51,7 @@ function GetRankedEmbeddingSearch(itemsWithEmbeddings,queryVector, threshold=0.6
 
     //sort // extract the best scores
     let ranked = []
-    if(vex.length < REG_SEARCH_LIMIT){ //small spaces use built in sort
+    if(vector_space.length < REG_SEARCH_LIMIT){ //small spaces use built in sort
         ranked = results.sort(([scoreA,vIA],[scoreB,vIB])=>scoreB-scoreA).slice(0,n)
     } else { 
         for(let i =0; i < n; i++)
@@ -54,16 +62,16 @@ function GetRankedEmbeddingSearch(itemsWithEmbeddings,queryVector, threshold=0.6
     let top =  ranked.filter(i=>!!i).map(([score,idx])=>{
         //map the ranked items back to their items, not including their embeddings 
         //but rather their cosine similarity in the  "score" field
-        let res = JSON.parse(JSON.stringify(itemsWithEmbeddings[idx]))
+        let res = susDeepCopy(itemsWithEmbeddings[idx])
         res["score"] = score
         delete res["embedding"]
         return res
         
     })
-    return {ranked: top}
+    return top
 }
 
 
-module.exports = { GetRankedEmbeddingSearch, smartVector } 
+module.exports = { GetRankedEmbeddingSearch, smartVector, EmbeddingInterface  } 
 
 

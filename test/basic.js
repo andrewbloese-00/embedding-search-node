@@ -21,9 +21,7 @@ function vectorFactory(length){
 //build the vectors
 console.time(`Build Search Space`)
 for(i = 0; i < SEARCH_SPACE_SIZE; i++){
-
     vectorFactory(SEARCH_SPACE_EMBEDDING_DIM)
-
 }
 console.timeEnd(`Build Search Space`)
 console.log("Built " , SEARCH_SPACE_SIZE , " random vectors.")
@@ -36,6 +34,7 @@ function runSingleTest(spaceSize){
     const r = Math.floor(Math.random() * (space.length-1))
     const {embedding} = space[r]
     const ranked = GetRankedEmbeddingSearch(space,embedding,0.65,10)
+    console.log(ranked)
     return performance.now( ) - s
 
 }
@@ -71,4 +70,4 @@ function avg(nums){
         let averageTime = avg(records[size])
         console.log(`${size} -> ${averageTime.toFixed(3)}ms`)
     }
-})(50)
+})(5)

@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/andrewbloese-00/embedding-search-node/issues"
   },
-  "homepage": "https://github.com/andrewbloese-00/embedding-search-node#readme"
+  "homepage": "https://github.com/andrewbloese-00/embedding-search-node#readme",
+  "dependencies": {
+    "openai": "^3.2.1"
+  }
 }
