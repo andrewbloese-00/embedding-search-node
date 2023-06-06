@@ -1,13 +1,11 @@
 
-# NEW - EMBEDDINGS API WRAPPER
-
-
 
 # About
-This repository contains the code and data for a JavaScript vector search algorithm, along with an analysis of its running times for different search space sizes. Allows for the searching/ranking of a list of javascript objects with "embedding" fields. 
+This repository contains an implementation of a JavaScript vector search algorithm, along with an analysis of its running times for different search space sizes. Allows for the searching/ranking of a list of javascript objects with "embedding" fields. 
 
-| [Notes](#notes) | [Test](#experiment) | [Data](#data)
-|-----------------|---------------------|--------------|
+
+| [Notes](#notes) | [Changelog](#updates) |[Test](#experiment) | [Data](#data)
+|-----------------|-----------------------|---------------------|--------------|
 
 
 # Usage 
@@ -67,7 +65,7 @@ Most if not all of the functions are documented with JSDoc as well!
 
 
 ----
-## Change History
+## Updates
 > v0.0.5 - 🧬 
 Created a wrapper for the openai embedding api. Generates embeddings using the 'text-embedding-ada-002' model. 
 
