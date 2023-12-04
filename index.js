@@ -72,6 +72,6 @@ function GetRankedEmbeddingSearch(itemsWithEmbeddings,queryVector, threshold=0.6
 }
 
 
-module.exports = { GetRankedEmbeddingSearch, smartVector, EmbeddingInterface  } 
+module.exports = { GetRankedEmbeddingSearch, EmbeddingInterface  } 
 
 
