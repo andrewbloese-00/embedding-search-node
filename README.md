@@ -18,7 +18,6 @@ In a new file...
     //bring in functionalities you need
     const { 
         GetRankedEmbeddingSearch,
-        smartVector, 
         EmbeddingInterface 
     } = require("embedding-search-node");
 
@@ -66,9 +65,11 @@ Most if not all of the functions are documented with JSDoc as well!
 
 ----
 ## Updates
+> v0.0.6 - 🤖
+Updated the openai syntax to their newest release version. All functionalities should still be functioning the same as before. 
+
 > v0.0.6 - 😬
 Fixed the creation of 'smartVectors' which were ultimately a poor understanding of embeddings. They are already normalized so just compute the dot product instead dot products / |a|*|b| nonsense.
-
 
 > v0.0.5 - 🧬 
 Created a wrapper for the openai embedding api. Generates embeddings using the 'text-embedding-ada-002' model. 
@@ -113,19 +114,6 @@ Previously, every comparison result was stored to be sorted, however by incorpor
 ### Maxheap for large n
 for search spaces with more than 20,000 items, a maxheap is utilized. Introducing parameter "m" as the max number of results, instead of sorting through all "n" items, we simply perform "m" heap extractions. 
 
-### Performance gains with "smart vectors"
-In the prior implementation, magnitudes of vectors were recomputed each time a vector comparison was performed. In order to optimize this, I implemented a "smartVector" function that takes a regular number[] and converts it into an object with the format
-```
-{
-    v: number[] //the original vector array
-    m: number // the magnitude of the vector 
-}
-```
-
-By computing the magnitude of the vector at creation, we save the comparison function from 2n calls to magnitude (previously each comparison performed 2 calls to magnitude for each of the n vectors). 
-
-
-
 
 # Experiment
 This experiment aimed to assess the performance of a vector comparison and ranking function that utilizes cosine similarity for determining the similarity between embedding vectors. The function was evaluated on various search space sizes, ranging from 10 to 163,000 items. Average execution times were measured for each search space size, and the distribution of computation time between vector comparisons and the merge sort step was analyzed. Currently the maximum searchable vectors in one call of the function is 163000 vectors of length 1536 ( without running out of memory and the process crashing ). 
@@ -161,7 +149,6 @@ The provided data includes average running times (in milliseconds) for the algor
 * v0.0.1 and v0.0.2 took almost 800ms compared to the new version (v0.0.3+) taking an average of around 350ms for the same (n=150,000) test size.
 * Further optimizations may result in support for even larger search space sizes. 
 ### Insights
-
 * Variability: Some data points deviate from the overall increasing trend, indicating that factors other than search space alone can influence the algorithm's performance. This can likely be attributed to the fact that the sorting step is determined by the number of "over threshold" similarity elements included in the search space.
 
 
