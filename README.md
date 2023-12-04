@@ -167,5 +167,4 @@ The provided data includes average running times (in milliseconds) for the algor
 
 --- 
 
-## How is this useful? 
-The advent of embedding-based vector search has ushered in a new era of search capabilities, offering unprecedented advantages in various domains. By harnessing the power of high-dimensional vector spaces and semantic similarities, this approach enables accurate and context-aware searches, paving the way for enhanced user experiences, personalized recommendations, and advanced data analytics. With embedding-based vector search, businesses and researchers can delve deeper into the intricacies of their data, uncovering hidden patterns and associations that were previously inaccessible. As this technology continues to evolve and mature, we can expect even more groundbreaking applications and transformative advancements in search methodologies, propelling us into a future where information retrieval is faster, more accurate, and more intuitive than ever before.
+This library is a rough work in progress. Mostly just experimental but you are welcome to use it in any of your software, please be sure to leave feedback on what features you would find useful to add, or any general suggestions for improvements.
