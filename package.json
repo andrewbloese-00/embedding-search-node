@@ -1,6 +1,6 @@
 {
   "name": "embedding-search-node",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "A vector search utility written purely in javascript with no dependencies. Allows for the searching/ranking of a list of javascript objects with 'embedding' field defined.",
   "main": "index.js",
   "scripts": {
