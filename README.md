@@ -66,6 +66,10 @@ Most if not all of the functions are documented with JSDoc as well!
 
 ----
 ## Updates
+> v0.0.6 - 😬
+Fixed the creation of 'smartVectors' which were ultimately a poor understanding of embeddings. They are already normalized so just compute the dot product instead dot products / |a|*|b| nonsense.
+
+
 > v0.0.5 - 🧬 
 Created a wrapper for the openai embedding api. Generates embeddings using the 'text-embedding-ada-002' model. 
 
